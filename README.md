@@ -59,6 +59,18 @@ cd lms-backend
 ./gradlew bootRun
 ```
 ---
+## 📡 Backend API Endpoints
+
+| Method | Endpoint                                      | Description                          |
+|--------|-----------------------------------------------|--------------------------------------|
+| GET    | `/courses`                                    | List all courses                     |
+| GET    | `/courses/{id}`                               | Get course with modules              |
+| GET    | `/modules/{id}`                               | Get module with lessons              |
+| GET    | `/lessons/{id}`                               | Get single lesson                    |
+| POST   | `/lessons/{lessonId}/progress?userId=123`     | Mark lesson as completed             |
+| GET    | `/courses/{courseId}/progress?userId=123`     | Get course progress percentage       |
+
+---
 ## 📸 UI Screenshots
 
 ### 📘 Courses List Page
@@ -188,7 +200,13 @@ export const lessons = [
   },
 ];
 ```
+---
+## 🧠 Assumptions Made
 
+- Authentication is not implemented; a static `userId = 123` is used as per assignment.
+- Data is assumed to be pre-seeded or added manually through API tools like Postman.
+- Only basic content types (TEXT, IMAGE, VIDEO) are supported as per specification.
+- No upload functionality; video/image URLs are embedded manually.
 ---
 
 ## 💡 Future Improvements
@@ -200,6 +218,6 @@ export const lessons = [
 
 ---
 👩‍💻 Author
-Sai Sindhu Subbisetty
-GitHub Profile : https://github.com/SaiSindhuSubbisetty
+**Sai Sindhu Subbisetty**  
+[GitHub Profile](https://github.com/SaiSindhuSubbisetty)
 ---
