@@ -62,22 +62,25 @@ cd lms-backend
 ## 📸 UI Screenshots
 
 ### 📘 Courses List Page
-![Courses](./screenshots/courses-page.png)
+![Courses](./ScreenSots/courses.png)
 
 ### 📗 Course Detail Page (`/courses/[id]`)
-![Course Detail](./screenshots/course-detail.png)
+![Course Detail](./ScreenSots/coursesid.png)
 
 ### 📕 Module Page (`/modules/[id]`)
-![Module](./screenshots/module-view.png)
+![Module](./ScreenSots/moduleid.png)
 
 ### 📒 Lesson - Text
-![Lesson Text](./screenshots/lesson-text.png)
+![Lesson Text](./ScreenSots/lessonsid.png)
 
-### 🖼️ Lesson - Image
-![Lesson Image](./screenshots/lesson-image.png)
+### 🖼️ Lesson - Mark As Complete
+![Lesson Image](./ScreenSots/markascomplete.png)
+
+### 🖼️ Lesson - Completed
+![Lesson Image](./ScreenSots/lessoncompleted.png)
 
 ### 📹 Lesson - Video
-![Lesson Video](./screenshots/lesson-video.png)
+![Lesson Video](./ScreenSots/Video.png)
 ---
 
 ---
