@@ -58,6 +58,27 @@ spring.jpa.show-sql=true
 cd lms-backend
 ./gradlew bootRun
 ```
+---
+## 📸 UI Screenshots
+
+### 📘 Courses List Page
+![Courses](./screenshots/courses-page.png)
+
+### 📗 Course Detail Page (`/courses/[id]`)
+![Course Detail](./screenshots/course-detail.png)
+
+### 📕 Module Page (`/modules/[id]`)
+![Module](./screenshots/module-view.png)
+
+### 📒 Lesson - Text
+![Lesson Text](./screenshots/lesson-text.png)
+
+### 🖼️ Lesson - Image
+![Lesson Image](./screenshots/lesson-image.png)
+
+### 📹 Lesson - Video
+![Lesson Video](./screenshots/lesson-video.png)
+---
 
 ---
 
@@ -174,4 +195,8 @@ export const lessons = [
 * ⬜ Track user-specific progress in DB
 * ⬜ Admin panel to add/edit courses, modules, lessons
 
+---
+👩‍💻 Author
+Sai Sindhu Subbisetty
+GitHub Profile : https://github.com/SaiSindhuSubbisetty
 ---
