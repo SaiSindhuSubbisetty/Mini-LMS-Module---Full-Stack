@@ -1,44 +1,145 @@
 'use client';
+
 import { useState } from 'react';
+
+type LessonType = 'TEXT' | 'IMAGE' | 'VIDEO';
+
+type Lesson = {
+  id: number;
+  title: string;
+  type: LessonType;
+  content: string;
+};
 
 const lessons = [
   { id: 1, title: 'Intro to Java', type: 'TEXT', content: 'Java is an OOP language.' },
-  { id: 2, title: 'Variables', type: 'VIDEO', content: 'https://www.youtube.com/embed/BJeQ8Y3aHjQ' }
-];
+  { id: 2, title: 'Variables', type: 'VIDEO', content: 'https://www.youtube.com/embed/BJeQ8Y3aHjQ' },
+  { id: 3, title: 'Java Syntax Basics', type: 'TEXT', content: 'Java uses a C-style syntax.' },
+  { id: 4, title: 'Installing Java & IDE', type: 'VIDEO', content: 'https://www.youtube.com/embed/n-48KsAM0jg' },
+  { id: 5, title: 'Primitive Data Types', type: 'TEXT', content: 'Java has 8 primitive types including int, float, etc.' },
+  { id: 6, title: 'Data Types Explained', type: 'IMAGE', content: 'https://www.javatpoint.com/images/java-data-types.png' },
+  { id: 7, title: 'Operators in Java', type: 'TEXT', content: 'Java supports arithmetic, relational, logical operators, etc.' },
+  { id: 8, title: 'Working with Operators', type: 'VIDEO', content: 'https://www.youtube.com/embed/U8wrE-3I9cE' },
+  { id: 9, title: 'Conditionals', type: 'TEXT', content: 'Control flow in Java using if, else, switch.' },
+  { id: 10, title: 'Loops', type: 'TEXT', content: 'Use loops to repeat code blocks.' },
+  { id: 11, title: 'Switch Case Demo', type: 'VIDEO', content: 'https://www.youtube.com/embed/eUzN_JPVGFI' },
+  { id: 12, title: 'Java Looping Structure', type: 'IMAGE', content: 'https://www.edureka.co/blog/wp-content/uploads/2018/09/Java-Loop-1.png' },
+  { id: 13, title: 'Arrays in Java', type: 'TEXT', content: 'Arrays store multiple values of the same type.' },
+  { id: 14, title: 'Array Operations', type: 'VIDEO', content: 'https://www.youtube.com/embed/-TkJLez_C5A' },
+  { id: 15, title: 'Java String Basics', type: 'TEXT', content: 'Strings are objects that represent sequences of characters.' },
+  { id: 16, title: 'String Methods', type: 'IMAGE', content: 'https://www.javatpoint.com/images/java-string.png' },
+  { id: 17, title: 'Intro to OOP', type: 'TEXT', content: 'OOP stands for Object Oriented Programming.' },
+  { id: 18, title: 'Classes and Objects', type: 'VIDEO', content: 'https://www.youtube.com/embed/LWvRBax0dL4' },
+  { id: 19, title: 'Constructors', type: 'TEXT', content: 'Constructors initialize new objects.' },
+  { id: 20, title: 'Inheritance in Java', type: 'VIDEO', content: 'https://www.youtube.com/embed/4ccF_YE9PlU' },
+  { id: 21, title: 'Polymorphism Overview', type: 'TEXT', content: 'Polymorphism allows multiple forms of the same method.' },
+  { id: 22, title: 'Abstraction Explained', type: 'TEXT', content: 'Abstraction hides internal details.' },
+  { id: 23, title: 'Interface vs Abstract Class', type: 'IMAGE', content: 'https://www.geeksforgeeks.org/wp-content/uploads/20220601172934/Interface-vs-Abstract-Class-in-Java.png' },
+  { id: 24, title: 'Encapsulation in Java', type: 'VIDEO', content: 'https://www.youtube.com/embed/7r4xVDI2vho' },
+  { id: 25, title: 'Wrapper Classes', type: 'TEXT', content: 'Wrapper classes convert primitives into objects.' },
+  { id: 26, title: 'Collections Framework Intro', type: 'VIDEO', content: 'https://www.youtube.com/embed/9UEHPiK53BA' },
+  { id: 27, title: 'ArrayList Example', type: 'TEXT', content: 'ArrayList is a resizable array in Java.' },
+  { id: 28, title: 'HashMap in Java', type: 'TEXT', content: 'HashMap stores key-value pairs.' },
+  { id: 29, title: 'Set Interface', type: 'TEXT', content: 'Set stores unique values.' },
+  { id: 30, title: 'List vs Set', type: 'IMAGE', content: 'https://static.javatpoint.com/java/images/list-vs-set-in-java.png' },
+  { id: 31, title: 'File Handling Intro', type: 'TEXT', content: 'Java provides java.io package for file operations.' },
+  { id: 32, title: 'Read/Write File Example', type: 'VIDEO', content: 'https://www.youtube.com/embed/U8cSR0kz_Oc' },
+  { id: 33, title: 'Exception Handling Basics', type: 'TEXT', content: 'Try-catch-finally handles exceptions.' },
+  { id: 34, title: 'Try Catch Example', type: 'VIDEO', content: 'https://www.youtube.com/embed/srPXMt1Q0nY' },
+  { id: 35, title: 'Custom Exceptions', type: 'TEXT', content: 'You can create custom exceptions in Java.' },
+  { id: 36, title: 'Java Multithreading', type: 'VIDEO', content: 'https://www.youtube.com/embed/DdFj6qU1ov4' },
+  { id: 37, title: 'Thread Lifecycle', type: 'TEXT', content: 'Java threads have states: New, Runnable, etc.' },
+  { id: 38, title: 'Runnable Interface', type: 'TEXT', content: 'Use Runnable to create threads.' },
+  { id: 39, title: 'Synchronized Keyword', type: 'TEXT', content: 'Used to avoid thread interference.' },
+  { id: 40, title: 'Multithreading Example', type: 'VIDEO', content: 'https://www.youtube.com/embed/CVHY1aAX_2o' },
+  { id: 41, title: 'Java GUI Intro', type: 'TEXT', content: 'GUI can be built using Swing or JavaFX.' },
+  { id: 42, title: 'JFrame Basics', type: 'VIDEO', content: 'https://www.youtube.com/embed/-Nfjw0X4AHE' },
+  { id: 43, title: 'JavaFX Hello World', type: 'TEXT', content: 'JavaFX is modern GUI framework for Java.' },
+  { id: 44, title: 'Event Handling', type: 'TEXT', content: 'Respond to GUI events like button click.' },
+  { id: 45, title: 'Java Layout Managers', type: 'IMAGE', content: 'https://media.geeksforgeeks.org/wp-content/uploads/20210429181603/Java-Layout-Managers.png' },
+  { id: 46, title: 'Swing vs JavaFX', type: 'TEXT', content: 'JavaFX is more modern than Swing.' },
+  { id: 47, title: 'Java Networking Basics', type: 'TEXT', content: 'Use java.net for socket communication.' },
+  { id: 48, title: 'Client-Server Chat App', type: 'VIDEO', content: 'https://www.youtube.com/embed/fp9pNP1Fv5I' },
+  { id: 49, title: 'DatagramSocket Example', type: 'TEXT', content: 'UDP communication using DatagramSocket.' },
+  { id: 50, title: 'TCP vs UDP', type: 'IMAGE', content: 'https://cdn.educba.com/academy/wp-content/uploads/2020/01/TCP-VS-UDP.jpg' },
+  { id: 51, title: 'JDBC Basics', type: 'TEXT', content: 'JDBC connects Java with databases.' },
+  { id: 52, title: 'JDBC CRUD Example', type: 'VIDEO', content: 'https://www.youtube.com/embed/tR7VDoW49RM' },
+  { id: 53, title: 'PreparedStatement in JDBC', type: 'TEXT', content: 'Avoid SQL injection using PreparedStatement.' },
+  { id: 54, title: 'JDBC vs Hibernate', type: 'TEXT', content: 'Hibernate simplifies database interactions.' },
+  { id: 55, title: 'Java Servlets Intro', type: 'TEXT', content: 'Servlets handle server-side Java logic.' },
+  { id: 56, title: 'Basic Servlet Example', type: 'VIDEO', content: 'https://www.youtube.com/embed/d2Usx0jnGIU' },
+  { id: 57, title: 'Servlet Lifecycle', type: 'TEXT', content: 'init, service, destroy' },
+  { id: 58, title: 'Session Management', type: 'TEXT', content: 'Sessions track user state.' },
+  { id: 59, title: 'Java Annotations', type: 'TEXT', content: 'Annotations provide metadata for code.' },
+  { id: 60, title: 'Custom Annotations', type: 'VIDEO', content: 'https://www.youtube.com/embed/KL9JvKA7M5I' },
+  { id: 61, title: 'Intro to Java Streams', type: 'TEXT', content: 'Streams provide functional-style operations.' },
+  { id: 62, title: 'Stream Filter Map Reduce', type: 'VIDEO', content: 'https://www.youtube.com/embed/t1-YZ6bF-g0' },
+  { id: 63, title: 'Lambda Expressions', type: 'TEXT', content: 'Lambda is used for concise function definitions.' },
+  { id: 64, title: 'Functional Interfaces', type: 'TEXT', content: 'An interface with one abstract method.' },
+  { id: 65, title: 'Spring Boot Intro', type: 'TEXT', content: 'Spring Boot simplifies Spring application setup.' },
+  { id: 66, title: 'Spring Boot Demo', type: 'VIDEO', content: 'https://www.youtube.com/embed/9SGDpanrc8U' },
+  { id: 67, title: 'REST API in Spring Boot', type: 'TEXT', content: 'Use @RestController for APIs.' },
+  { id: 68, title: 'Spring Boot + MySQL', type: 'TEXT', content: 'Integrate MySQL using JPA.' },
+  { id: 69, title: 'Spring Boot Project Setup', type: 'VIDEO', content: 'https://www.youtube.com/embed/Gx4iBLKLVHk' },
+  { id: 70, title: 'Java Design Patterns', type: 'TEXT', content: 'Design patterns solve common problems.' },
+  { id: 71, title: 'Singleton Pattern', type: 'VIDEO', content: 'https://www.youtube.com/embed/44W3m2aDj1w' },
+  { id: 72, title: 'Factory Pattern', type: 'TEXT', content: 'Factory creates objects without exposing logic.' },
+  { id: 73, title: 'Builder Pattern', type: 'TEXT', content: 'Builder builds complex objects step-by-step.' },
+  { id: 74, title: 'Observer Pattern', type: 'VIDEO', content: 'https://www.youtube.com/embed/_BpmfnqjgzQ' },
+  { id: 75, title: 'Final Revision Notes', type: 'TEXT', content: 'Quick recap of core Java concepts.' },
+  { id: 76, title: 'Sample Quiz', type: 'TEXT', content: 'Answer 10 questions to test your knowledge.' },
+  { id: 77, title: 'Coding Exercise', type: 'TEXT', content: 'Build a mini Java calculator app.' },
+  { id: 78, title: 'Mock Interview Questions', type: 'TEXT', content: 'Frequently asked Java interview questions.' },
+  { id: 79, title: 'Thank You!', type: 'TEXT', content: 'You have completed the Java course!' },
+  { id: 80, title: 'Certificate Download', type: 'VIDEO', content: 'https://www.youtube.com/embed/certificate-download-placeholder' }
+]
+
 
 export default function LessonView({ params }: { params: { id: string } }) {
-  const lesson = lessons.find(l => l.id === parseInt(params.id));
+  const lesson = lessons.find((l) => l.id === parseInt(params.id));
   const [completed, setCompleted] = useState(false);
 
-  if (!lesson) return <div>Lesson not found</div>;
+  if (!lesson) return <div className="text-red-500">❌ Lesson not found</div>;
 
   const renderContent = () => {
     switch (lesson.type) {
-      case 'TEXT': return <p>{lesson.content}</p>;
-      case 'IMAGE': return <img src={lesson.content} alt={lesson.title} />;
-      case 'VIDEO': return (
-        <iframe
-          className="w-full aspect-video"
-          src={lesson.content}
-          allowFullScreen
-        />
-      );
+      case 'TEXT':
+        return <p className="text-lg leading-relaxed">{lesson.content}</p>;
+      case 'IMAGE':
+        return (
+          <img
+            src={lesson.content}
+            alt={lesson.title}
+            className="w-full max-w-md mx-auto rounded shadow"
+          />
+        );
+      case 'VIDEO':
+        return (
+          <iframe
+            className="w-full aspect-video rounded"
+            src={lesson.content}
+            allowFullScreen
+          />
+        );
+      default:
+        return <p>Unsupported content type</p>;
     }
   };
 
   const markComplete = () => {
-    // Fake API call
     setCompleted(true);
-    alert('Marked as complete');
+    alert('✅ Lesson marked as complete!');
   };
 
   return (
-    <div>
-      <h1 className="text-2xl font-semibold mb-4">{lesson.title}</h1>
-      <div className="mb-4">{renderContent()}</div>
+    <div className="p-4 max-w-3xl mx-auto">
+      <h1 className="text-3xl font-bold mb-6">{lesson.title}</h1>
+      <div className="mb-6">{renderContent()}</div>
       <button
         onClick={markComplete}
-        className={`px-4 py-2 rounded ${completed ? 'bg-green-600' : 'bg-blue-600'} text-white`}
+        className={`px-6 py-2 rounded text-white transition ${
+          completed ? 'bg-green-600' : 'bg-blue-600 hover:bg-blue-700'
+        }`}
       >
         {completed ? '✅ Completed' : 'Mark as Complete'}
       </button>

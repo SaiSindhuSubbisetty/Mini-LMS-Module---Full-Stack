@@ -1,6 +1,10 @@
 const courses = [
   { id: 1, title: 'Java Basics', description: 'Intro to Java' },
-  { id: 2, title: 'Web Dev', description: 'HTML/CSS/JS Bootcamp' }
+  { id: 2, title: 'Web Dev', description: 'HTML/CSS/JS Bootcamp' },
+  { id: 3, title: 'Spring Boot', description: 'Spring Boot' },
+  { id: 4, title: 'React JS', description: 'Master React Js' },
+  { id: 5, title: 'Python', description: 'Python Developer Course' },
+
 ];
 
 export default function CoursesPage() {
